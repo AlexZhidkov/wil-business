@@ -25,6 +25,11 @@ export class ProjectsComponent implements OnInit {
     });
   }
 
+  addNewProject(): void {
+    this.projectService.add({ title: '', description: '' })
+      .then(r => this.openEditDialog(r.id));
+  }
+
   openEditDialog(id: string): void {
     this.dialog.open(ProjectEditDialogComponent, {
       width: '1200px', data: id
