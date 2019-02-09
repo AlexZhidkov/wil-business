@@ -1,9 +1,11 @@
 <div *ngFor="let project of projects | async">
   <mat-card>
     <mat-card-header>
-      <mat-card-title>{{project.title}}</mat-card-title>
+      <mat-card-title>
+        <markdown [data]="project.title"></markdown>
+      </mat-card-title>
     </mat-card-header>
-    {{project.description}}
+    <markdown [data]="project.description"></markdown>
     <mat-card-actions>
       <button mat-raised-button color="accent">Interested</button>
     </mat-card-actions>
