@@ -10,7 +10,7 @@ import { Project } from '../model/project';
   styleUrls: ['./project-edit-dialog.component.scss']
 })
 export class ProjectEditDialogComponent implements OnInit {
-  private projectDoc: AngularFirestoreDocument<Project>;
+  projectDoc: AngularFirestoreDocument<Project>;
   project: Observable<Project>;
   isLoading: boolean;
 
