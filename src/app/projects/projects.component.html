@@ -8,6 +8,9 @@
     <markdown [data]="project.description"></markdown>
     <mat-card-actions>
       <button mat-raised-button color="accent">Interested</button>
+      <button mat-icon-button>
+        <mat-icon aria-label="Edit" (click)="openEditDialog(project.id)">edit</mat-icon>
+      </button>
     </mat-card-actions>
   </mat-card>
 </div>
