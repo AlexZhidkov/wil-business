@@ -40,20 +40,20 @@ $mat-experlio-accent: (
 );
 
 $mat-experlio-primary: (
-    50 : #f1edf5,
-    100 : #dbd1e6,
-    200 : #c4b3d5,
-    300 : #ac94c4,
-    400 : #9a7db7,
-    500 : #8866aa,
-    600 : #805ea3,
-    700 : #755399,
-    800 : #6b4990,
-    900 : #58387f,
-    A100 : #e4cfff,
-    A200 : #c79cff,
-    A400 : #ab69ff,
-    A700 : #9c4fff,
+    50 : #efebf4,
+    100 : #d7cee4,
+    200 : #bcadd2,
+    300 : #a18cc0,
+    400 : #8c74b3,
+    500 : #785ba5,
+    600 : #70539d,
+    700 : #654993,
+    800 : #5b408a,
+    900 : #482f79,
+    A100 : #d6c2ff,
+    A200 : #b38fff,
+    A400 : #915cff,
+    A700 : #8042ff,
     contrast: (
         50 : #000000,
         100 : #000000,
@@ -67,10 +67,11 @@ $mat-experlio-primary: (
         900 : #ffffff,
         A100 : #000000,
         A200 : #000000,
-        A400 : #000000,
+        A400 : #ffffff,
         A700 : #ffffff,
     )
 );
+
 
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
