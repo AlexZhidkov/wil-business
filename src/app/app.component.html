@@ -1,3 +1,34 @@
-<mat-toolbar color="primary">Experlio</mat-toolbar>
-
-<router-outlet></router-outlet>
+<mat-toolbar color="primary">
+    <button mat-icon-button (click)="sidenav.toggle()">
+        <mat-icon aria-label="Menu">menu</mat-icon>
+    </button>
+    <span>Experlio</span>
+</mat-toolbar>
+<mat-sidenav-container>
+    <mat-sidenav #sidenav fixedInViewport=true mode="over" (click)="sidenav.toggle()">
+        <mat-nav-list>
+            <mat-list-item class="nav-profile-list-item">
+                <app-sidenav-profile>
+                </app-sidenav-profile>
+            </mat-list-item>
+        </mat-nav-list>
+        <mat-nav-list>
+            <mat-list-item>
+                <a matLine href="">Home</a>
+            </mat-list-item>
+        </mat-nav-list>
+        <mat-nav-list>
+            <mat-list-item>
+                <a matLine routerLink="/projects" routerLinkActive="active">Projects</a>
+            </mat-list-item>
+        </mat-nav-list>
+        <mat-nav-list>
+            <mat-list-item>
+                <a matLine (click)="logout()">Sign Out</a>
+            </mat-list-item>
+        </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+</mat-sidenav-container>
