@@ -26,13 +26,15 @@ import { ProjectEditDialogComponent } from './project-edit-dialog/project-edit-d
 import { ProjectService } from './services/project.service';
 import { SidenavProfileComponent } from './sidenav-profile/sidenav-profile.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { ProjectComponent } from './project/project.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProjectsComponent,
     ProjectEditDialogComponent,
-    SidenavProfileComponent
+    SidenavProfileComponent,
+    ProjectComponent
   ],
   entryComponents: [
     ProjectEditDialogComponent

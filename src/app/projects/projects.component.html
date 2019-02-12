@@ -1,20 +1,18 @@
-<mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
-<div *ngFor="let project of projects | async">
-  <mat-card>
-    <mat-card-header>
-      <mat-card-title>
-        <markdown [data]="project.title"></markdown>
-      </mat-card-title>
-    </mat-card-header>
-    <markdown [data]="project.description"></markdown>
-    <mat-card-actions>
-      <button mat-raised-button color="accent">Interested</button>
-      <button mat-icon-button>
-        <mat-icon aria-label="Edit" (click)="openEditDialog(project.id)">edit</mat-icon>
-      </button>
-    </mat-card-actions>
-  </mat-card>
-</div>
-<button mat-fab>
-  <mat-icon aria-label="Add" (click)="addNewProject()">add</mat-icon>
-</button>
+<mat-card>
+  <mat-card-header>
+    <div mat-card-avatar>
+      <mat-icon>build</mat-icon>
+    </div>
+    <mat-card-title>Projects</mat-card-title>
+    <mat-card-subtitle>Choose one of the available projects</mat-card-subtitle>
+  </mat-card-header>
+  <mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
+  <mat-list>
+    <mat-list-item *ngFor="let project of projects | async" routerLink="/project/{{project.id}}">
+      {{ project.title }}
+    </mat-list-item>
+  </mat-list>
+  <button mat-fab>
+    <mat-icon aria-label="Add" (click)="addNewProject()">add</mat-icon>
+  </button>
+</mat-card>

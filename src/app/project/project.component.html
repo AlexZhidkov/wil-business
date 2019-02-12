@@ -1,0 +1,15 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>
+      <markdown [data]="(project | async)?.title"></markdown>
+    </mat-card-title>
+  </mat-card-header>
+  <mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
+  <markdown [data]="(project | async)?.description"></markdown>
+  <mat-card-actions>
+    <button mat-raised-button color="accent">Interested</button>
+    <button mat-icon-button>
+      <mat-icon aria-label="Edit" (click)="openEditDialog()">edit</mat-icon>
+    </button>
+  </mat-card-actions>
+</mat-card>
