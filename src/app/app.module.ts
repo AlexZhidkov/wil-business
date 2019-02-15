@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { environment } from '../environments/environment';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
@@ -18,6 +18,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatListModule } from '@angular/material/list';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatSelectModule } from '@angular/material/select';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -27,6 +29,7 @@ import { ProjectService } from './services/project.service';
 import { SidenavProfileComponent } from './sidenav-profile/sidenav-profile.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { ProjectComponent } from './project/project.component';
+import { EoiBusinessComponent } from './eoi-business/eoi-business.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +37,8 @@ import { ProjectComponent } from './project/project.component';
     ProjectsComponent,
     ProjectEditDialogComponent,
     SidenavProfileComponent,
-    ProjectComponent
+    ProjectComponent,
+    EoiBusinessComponent
   ],
   entryComponents: [
     ProjectEditDialogComponent
@@ -43,6 +47,7 @@ import { ProjectComponent } from './project/project.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AngularFireAuthModule,
@@ -58,6 +63,8 @@ import { ProjectComponent } from './project/project.component';
     MatInputModule,
     MatProgressBarModule,
     MatListModule,
+    MatStepperModule,
+    MatSelectModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [

@@ -1,0 +1,95 @@
+<mat-horizontal-stepper #stepper>
+  <mat-step [stepControl]="jobFormGroup">
+    <form [formGroup]="jobFormGroup">
+      <ng-template matStepLabel>Job</ng-template>
+      <div class="form-container">
+        <mat-form-field>
+          <textarea matInput rows="10"
+            placeholder="If there was one thing you could do in your business, but you simply don't have time for it, what would it be?"
+            formControlName="jobCtrl" required>
+            </textarea>
+          <mat-hint>
+            It can't be something that the business does every day e.g generate more business or reduce costs.
+            For example, you might like to do research on a new product line to sell.
+          </mat-hint>
+        </mat-form-field>
+
+        <mat-form-field>
+          <textarea matInput rows="10" placeholder="What tasks or skills do you think this might require?"
+            formControlName="skillsCtrl">
+              </textarea>
+        </mat-form-field>
+
+        <mat-form-field>
+          <textarea matInput rows="10" placeholder="Does the student need a clearance for any work to be conducted?"
+            formControlName="clearanceCtrl">
+                </textarea>
+        </mat-form-field>
+      </div>
+      <div>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+
+  <mat-step [stepControl]="employerFormGroup">
+    <form [formGroup]="employerFormGroup">
+      <ng-template matStepLabel>Business</ng-template>
+      <div class="form-container">
+        <mat-form-field>
+          <input matInput placeholder="Name" formControlName="nameCtrl" required>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Website" formControlName="websiteCtrl">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Primary contact" formControlName="primaryContactCtrl" required>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Address" formControlName="addressCtrl">
+        </mat-form-field>
+        <mat-form-field>
+          <textarea matInput rows="10" placeholder="Tell us about your business. What makes you unique?"
+            formControlName="aboutCtrl" required>
+              </textarea>
+          <mat-hint>
+            Please provide some brief background about the organization and its core business.
+          </mat-hint>
+        </mat-form-field>
+      </div>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+
+  <mat-step [stepControl]="datesFormGroup">
+    <form [formGroup]="datesFormGroup">
+      <ng-template matStepLabel>Dates</ng-template>
+      <div class="form-container">
+        <mat-form-field>
+          <mat-select placeholder="What dates would you like this placement to start and end?">
+            <mat-option *ngFor="let semester of semesters" [value]="semester.number">
+              {{semester.dates}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <h4>If you'd like a shorter placement, the time required is 120 hours for an undergraduate.</h4>
+        <h4>Longer placements are 240 hours and are completed by postgraduates.</h4>
+      </div>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Supervisor</ng-template>
+    To Do
+    <div>
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button (click)="stepper.reset()">Reset</button>
+    </div>
+  </mat-step>
+</mat-horizontal-stepper>
