@@ -30,6 +30,7 @@ import { SidenavProfileComponent } from './sidenav-profile/sidenav-profile.compo
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { ProjectComponent } from './project/project.component';
 import { EoiBusinessComponent } from './eoi-business/eoi-business.component';
+import { ProjectGroupsComponent } from './project-groups/project-groups.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { EoiBusinessComponent } from './eoi-business/eoi-business.component';
     ProjectEditDialogComponent,
     SidenavProfileComponent,
     ProjectComponent,
-    EoiBusinessComponent
+    EoiBusinessComponent,
+    ProjectGroupsComponent
   ],
   entryComponents: [
     ProjectEditDialogComponent

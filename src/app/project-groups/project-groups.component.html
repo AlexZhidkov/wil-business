@@ -1,0 +1,18 @@
+<mat-card>
+  <mat-card-header>
+    <div mat-card-avatar>
+      <mat-icon>folder_open</mat-icon>
+    </div>
+    <mat-card-title>Projects</mat-card-title>
+    <mat-card-subtitle>Choose one of the available projects</mat-card-subtitle>
+  </mat-card-header>
+  <mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
+  <mat-list>
+    <mat-list-item *ngFor="let projectGroup of projectGroups | async" routerLink="/projectGroup/{{projectGroup.id}}">
+      {{ projectGroup.title }}
+    </mat-list-item>
+  </mat-list>
+  <button mat-fab>
+    <mat-icon aria-label="Add" (click)="addNewProjectGroup()">add</mat-icon>
+  </button>
+</mat-card>
