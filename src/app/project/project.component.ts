@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
-import { ProjectEditDialogComponent } from '../project-edit-dialog/project-edit-dialog.component';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Project } from '../model/project';
@@ -27,11 +26,5 @@ export class ProjectComponent implements OnInit {
     this.projectDoc = this.afs.doc<Project>('projects/' + this.projectId);
     this.project = this.projectDoc.valueChanges();
     this.project.subscribe(() => this.isLoading = false);
-  }
-
-  openEditDialog(): void {
-    this.dialog.open(ProjectEditDialogComponent, {
-      width: '1200px', data: this.projectId
-    });
   }
 }

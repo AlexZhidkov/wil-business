@@ -32,6 +32,7 @@ import { ProjectComponent } from './project/project.component';
 import { EoiBusinessComponent } from './eoi-business/eoi-business.component';
 import { ProjectGroupsComponent } from './project-groups/project-groups.component';
 import { ProjectGroupComponent } from './project-group/project-group.component';
+import { ProjectEditComponent } from './project-edit/project-edit.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { ProjectGroupComponent } from './project-group/project-group.component';
     ProjectComponent,
     EoiBusinessComponent,
     ProjectGroupsComponent,
-    ProjectGroupComponent
+    ProjectGroupComponent,
+    ProjectEditComponent
   ],
   entryComponents: [
     ProjectEditDialogComponent
