@@ -17,6 +17,7 @@ export class EoiBusinessComponent implements OnInit {
   jobFormGroup: FormGroup;
   employerFormGroup: FormGroup;
   datesFormGroup: FormGroup;
+  supervisorFormGroup: FormGroup;
 
   constructor(private formBuilder: FormBuilder) { }
 
@@ -30,7 +31,8 @@ export class EoiBusinessComponent implements OnInit {
     ];
 
     this.jobFormGroup = this.formBuilder.group({
-      jobCtrl: ['', Validators.required],
+      jobTitleCtrl: ['', Validators.required],
+      jobDescriptionCtrl: ['', Validators.required],
       skillsCtrl: [''],
       clearanceCtrl: ['']
     });
@@ -45,6 +47,13 @@ export class EoiBusinessComponent implements OnInit {
       jobCtrl: ['', Validators.required],
       skillsCtrl: [''],
       clearanceCtrl: ['']
+    });
+    this.supervisorFormGroup = this.formBuilder.group({
+      supervisorCtrl: ['', Validators.required],
+      supervisorRoleCtrl: [''],
+      supervisorExperienceCtrl: [''],
+      supervisorPhoneCtrl: ['', Validators.required],
+      supervisorEmailCtrl: ['', Validators.required]
     });
   }
 }

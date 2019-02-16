@@ -3,23 +3,25 @@
     <form [formGroup]="jobFormGroup">
       <ng-template matStepLabel>Job</ng-template>
       <div class="form-container">
+        <p>
+          If there was one thing you could do in your business, but you simply don't have time for it, what would it be?
+        </p>
+        <p>
+          It can't be something that the business does every day e.g generate more business or reduce costs.
+          For example, you might like to do research on a new product line to sell.
+        </p>
         <mat-form-field>
-          <textarea matInput rows="10"
-            placeholder="If there was one thing you could do in your business, but you simply don't have time for it, what would it be?"
-            formControlName="jobCtrl" required>
-            </textarea>
-          <mat-hint>
-            It can't be something that the business does every day e.g generate more business or reduce costs.
-            For example, you might like to do research on a new product line to sell.
-          </mat-hint>
+          <input matInput placeholder="Job Title" formControlName="jobTitleCtrl" required>
         </mat-form-field>
-
+        <mat-form-field>
+          <textarea matInput rows="10" placeholder="Description" formControlName="jobDescriptionCtrl" required>
+            </textarea>
+        </mat-form-field>
         <mat-form-field>
           <textarea matInput rows="10" placeholder="What tasks or skills do you think this might require?"
             formControlName="skillsCtrl">
               </textarea>
         </mat-form-field>
-
         <mat-form-field>
           <textarea matInput rows="10" placeholder="Does the student need a clearance for any work to be conducted?"
             formControlName="clearanceCtrl">
@@ -84,12 +86,31 @@
       </div>
     </form>
   </mat-step>
-  <mat-step>
-    <ng-template matStepLabel>Supervisor</ng-template>
-    To Do
-    <div>
-      <button mat-button matStepperPrevious>Back</button>
-      <button mat-button (click)="stepper.reset()">Reset</button>
-    </div>
+  <mat-step [stepControl]="supervisorFormGroup">
+    <form [formGroup]="supervisorFormGroup">
+      <ng-template matStepLabel>Supervisor</ng-template>
+      <div class="form-container">
+        <mat-form-field>
+          <input matInput placeholder="Name" formControlName="supervisorCtrl" required>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Title / Role in organisation" formControlName="supervisorRoleCtrl">
+        </mat-form-field>
+        <mat-form-field>
+          <textarea matInput rows="10" placeholder="Experience" formControlName="supervisorExperienceCtrl">
+            </textarea>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Phone" formControlName="supervisorPhoneCtrl" required>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Email" formControlName="supervisorEmailCtrl" required>
+        </mat-form-field>
+      </div>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button (click)="submit()">Submit</button>
+      </div>
+    </form>
   </mat-step>
 </mat-horizontal-stepper>
