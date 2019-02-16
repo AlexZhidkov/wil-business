@@ -31,6 +31,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { ProjectComponent } from './project/project.component';
 import { EoiBusinessComponent } from './eoi-business/eoi-business.component';
 import { ProjectGroupsComponent } from './project-groups/project-groups.component';
+import { ProjectGroupComponent } from './project-group/project-group.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { ProjectGroupsComponent } from './project-groups/project-groups.componen
     SidenavProfileComponent,
     ProjectComponent,
     EoiBusinessComponent,
-    ProjectGroupsComponent
+    ProjectGroupsComponent,
+    ProjectGroupComponent
   ],
   entryComponents: [
     ProjectEditDialogComponent
