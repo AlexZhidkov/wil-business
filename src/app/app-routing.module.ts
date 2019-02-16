@@ -6,6 +6,7 @@ import { EoiBusinessComponent } from './eoi-business/eoi-business.component';
 import { ProjectGroupsComponent } from './project-groups/project-groups.component';
 import { ProjectGroupComponent } from './project-group/project-group.component';
 import { ProjectEditComponent } from './project-edit/project-edit.component';
+import { ProjectGroupEditComponent } from './project-group-edit/project-group-edit.component';
 
 const routes: Routes = [
   { path: 'projects', component: ProjectsComponent },
@@ -13,6 +14,7 @@ const routes: Routes = [
   { path: 'projectEdit/:id', component: ProjectEditComponent },
   { path: 'projectGroups', component: ProjectGroupsComponent },
   { path: 'projectGroup/:id', component: ProjectGroupComponent },
+  { path: 'projectGroupEdit/:id', component: ProjectGroupEditComponent },
   { path: 'eoi-business', component: EoiBusinessComponent },
   { path: '**', component: ProjectsComponent }
 ];

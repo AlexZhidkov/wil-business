@@ -28,10 +28,4 @@ export class ProjectGroupComponent implements OnInit {
     this.projectGroup = this.projectGroupDoc.valueChanges();
     this.projectGroup.subscribe(() => this.isLoading = false);
   }
-
-  openEditDialog(): void {
-    this.dialog.open(ProjectEditDialogComponent, {
-      width: '1200px', data: this.projectGroupId
-    });
-  }
 }

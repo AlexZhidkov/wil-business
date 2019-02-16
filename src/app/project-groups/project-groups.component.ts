@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { MatDialog } from '@angular/material';
-import { ProjectEditDialogComponent } from '../project-edit-dialog/project-edit-dialog.component';
 import { ProjectService } from '../services/project.service';
 import { ProjectGroup } from '../model/project-group';
 
@@ -14,7 +13,7 @@ export class ProjectGroupsComponent implements OnInit {
   projectGroups: Observable<ProjectGroup[]>;
   isLoading: boolean;
 
-  constructor(public dialog: MatDialog, private projectService: ProjectService) { }
+  constructor(private router: Router, private projectService: ProjectService) { }
 
   ngOnInit() {
     this.isLoading = true;
@@ -27,12 +26,6 @@ export class ProjectGroupsComponent implements OnInit {
 
   addNewProjectGroup(): void {
     this.projectService.add({ title: '', description: '' })
-      .then(r => this.openEditDialog(r.id));
-  }
-
-  openEditDialog(id: string): void {
-    this.dialog.open(ProjectEditDialogComponent, {
-      width: '1200px', data: id
-    });
+      .then(r => this.router.navigate(['/projectGroupEdit/' + r.id]));
   }
 }
