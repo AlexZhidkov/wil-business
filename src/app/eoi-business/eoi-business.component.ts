@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { EoiBusiness } from '../model/eoi-business';
+import { EoiBusinessService } from '../services/eoi-business.service';
 
 export interface Semester {
   number: number;
@@ -27,11 +28,13 @@ export class EoiBusinessComponent implements OnInit {
   eoiDoc: AngularFirestoreDocument<EoiBusiness>;
   eoi: Observable<EoiBusiness>;
   isLoading: boolean;
+  previouslySubmittedEois: Observable<EoiBusiness[]>;
 
   constructor(
     private route: ActivatedRoute,
     private formBuilder: FormBuilder,
-    private afs: AngularFirestore
+    private afs: AngularFirestore,
+    private eoiBusinessService: EoiBusinessService
   ) { }
 
   ngOnInit() {
@@ -44,6 +47,9 @@ export class EoiBusinessComponent implements OnInit {
       { number: 3, dates: 'Semester 3. ' },
       { number: 4, dates: 'Semester 4. ' }
     ];
+
+    this.eoiBusinessService.setCollection('/users/GOXQ9lHQgCWKtSPJJIzWVavzLmO2/eoiBusiness');
+    this.previouslySubmittedEois = this.eoiBusinessService.list();
 
     if (this.isNewProject) {
       this.afs.collection<EoiBusiness>('/users/GOXQ9lHQgCWKtSPJJIzWVavzLmO2/eoiBusiness')

@@ -8,6 +8,7 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { MarkdownModule } from 'ngx-markdown';
 
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatCardModule } from '@angular/material/card';
@@ -34,6 +35,7 @@ import { ProjectGroupsComponent } from './project-groups/project-groups.componen
 import { ProjectGroupComponent } from './project-group/project-group.component';
 import { ProjectEditComponent } from './project-edit/project-edit.component';
 import { ProjectGroupEditComponent } from './project-group-edit/project-group-edit.component';
+import { EoiBusinessService } from './services/eoi-business.service';
 
 @NgModule({
   declarations: [
@@ -60,6 +62,7 @@ import { ProjectGroupEditComponent } from './project-group-edit/project-group-ed
     AngularFirestoreModule,
     AngularFireAuthModule,
     BrowserAnimationsModule,
+    FlexLayoutModule,
     MarkdownModule.forRoot(),
     MatToolbarModule,
     MatSidenavModule,
@@ -77,6 +80,7 @@ import { ProjectGroupEditComponent } from './project-group-edit/project-group-ed
   ],
   providers: [
     ProjectService,
+    EoiBusinessService
   ],
   bootstrap: [AppComponent]
 })

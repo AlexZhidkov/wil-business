@@ -12,6 +12,15 @@
           For example, you might like to do research on a new product line to sell.
         </p>
         <mat-form-field>
+          <mat-select placeholder="Choose previously submitted to clone">
+            <mat-option *ngFor="let eoi of previouslySubmittedEois | async" [value]="eoi.id">
+              {{eoi.title}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <button mat-button>Clone</button>
+
+        <mat-form-field>
           <input matInput placeholder="Job Title" formControlName="jobTitleCtrl" required
             (ngModelChange)="eoiDoc.update({title: $event})">
         </mat-form-field>
