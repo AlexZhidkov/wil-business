@@ -15,6 +15,7 @@ const routes: Routes = [
   { path: 'projectGroups', component: ProjectGroupsComponent },
   { path: 'projectGroup/:id', component: ProjectGroupComponent },
   { path: 'projectGroupEdit/:id', component: ProjectGroupEditComponent },
+  { path: 'EOI-business/:id/:isNewProject', component: EoiBusinessComponent },
   { path: 'EOI-business/:id', component: EoiBusinessComponent },
   { path: '**', component: ProjectsComponent }
 ];

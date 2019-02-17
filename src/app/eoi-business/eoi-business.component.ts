@@ -23,6 +23,7 @@ export class EoiBusinessComponent implements OnInit {
   supervisorFormGroup: FormGroup;
 
   projectId: string;
+  isNewProject: boolean;
   eoiDoc: AngularFirestoreDocument<EoiBusiness>;
   eoi: Observable<EoiBusiness>;
   isLoading: boolean;
@@ -36,9 +37,7 @@ export class EoiBusinessComponent implements OnInit {
   ngOnInit() {
     this.isLoading = true;
     this.projectId = this.route.snapshot.paramMap.get('id');
-    this.eoiDoc = this.afs.doc<any>('/users/GOXQ9lHQgCWKtSPJJIzWVavzLmO2/eoiBusiness/UftNbaUVO8okK26VZOhi/');
-    this.eoi = this.eoiDoc.valueChanges();
-
+    this.isNewProject = (this.route.snapshot.paramMap.get('isNewProject') === 'true');
     this.semesters = [
       { number: 1, dates: 'Semester 1. 25 February - 	24 May' },
       { number: 2, dates: 'Semester 2. 29 July - 25 October' },
@@ -46,6 +45,39 @@ export class EoiBusinessComponent implements OnInit {
       { number: 4, dates: 'Semester 4. ' }
     ];
 
+    if (this.isNewProject) {
+      this.afs.collection<EoiBusiness>('/users/GOXQ9lHQgCWKtSPJJIzWVavzLmO2/eoiBusiness')
+        .add({
+          projectGroupId: this.projectId,
+          isNew: false,
+          title: '',
+          description: '',
+          skills: '',
+          clearance: '',
+          name: '',
+          website: '',
+          primaryContact: '',
+          address: '',
+          about: '',
+          dates: '',
+          supervisor: '',
+          supervisorRole: '',
+          supervisorExperience: '',
+          supervisorPhone: '',
+          supervisorEmail: '',
+        })
+        .then(r => {
+          this.eoiDoc = this.afs.doc<EoiBusiness>('/users/GOXQ9lHQgCWKtSPJJIzWVavzLmO2/eoiBusiness/' + r.id);
+          this.bindFormControls();
+        });
+    } else {
+      this.eoiDoc = this.afs.doc<EoiBusiness>('/users/GOXQ9lHQgCWKtSPJJIzWVavzLmO2/eoiBusiness/UftNbaUVO8okK26VZOhi/');
+      this.bindFormControls();
+    }
+  }
+
+  bindFormControls() {
+    this.eoi = this.eoiDoc.valueChanges();
     this.eoi.subscribe(r => {
       this.isLoading = false;
       this.jobFormGroup = this.formBuilder.group({
