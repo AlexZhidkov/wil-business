@@ -111,4 +111,8 @@ export class EoiBusinessComponent implements OnInit {
       });
     });
   }
+
+  CloneFromEoi(id: any) {
+    this.eoiDoc.update(id);
+  }
 }
