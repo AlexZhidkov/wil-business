@@ -82,7 +82,7 @@ export class EoiBusinessComponent implements OnInit {
           supervisorEmail: '',
         })
         .then(r => {
-          this.eoiDoc = this.afs.doc<EoiBusiness>(this.eoiBusinessUrl + r.id);
+          this.eoiDoc = this.afs.doc<EoiBusiness>(this.eoiBusinessUrl + '/' + r.id);
           this.bindFormControls();
         });
     } else {
