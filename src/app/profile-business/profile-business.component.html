@@ -1,0 +1,15 @@
+<mat-card>
+  <mat-card-header>
+    <div mat-card-avatar>
+      <mat-icon>build</mat-icon>
+    </div>
+    <mat-card-title>Submitted EOIs</mat-card-title>
+    <mat-card-subtitle>Choose one to view or edit</mat-card-subtitle>
+  </mat-card-header>
+  <mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
+  <mat-list>
+    <mat-list-item *ngFor="let eoi of eois | async" routerLink="/EOI-business/{{eoi.id}}">
+      {{ eoi.title }}
+    </mat-list-item>
+  </mat-list>
+</mat-card>
