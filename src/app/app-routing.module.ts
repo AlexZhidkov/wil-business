@@ -9,11 +9,13 @@ import { ProjectGroupComponent } from './project-group/project-group.component';
 import { ProjectEditComponent } from './project-edit/project-edit.component';
 import { ProjectGroupEditComponent } from './project-group-edit/project-group-edit.component';
 import { ProfileBusinessComponent } from './profile-business/profile-business.component';
+import { EoiStudentComponent } from './eoi-student/eoi-student.component';
 
 const routes: Routes = [
   { path: 'projects', component: ProjectsComponent },
   { path: 'project/:id', component: ProjectComponent },
   { path: 'projectEdit/:id', component: ProjectEditComponent },
+  { path: 'EOI-student/:id/:isNewProject', component: EoiStudentComponent, canActivate: [AuthService] },
   { path: 'projectGroups', component: ProjectGroupsComponent },
   { path: 'projectGroup/:id', component: ProjectGroupComponent },
   { path: 'projectGroupEdit/:id', component: ProjectGroupEditComponent },
