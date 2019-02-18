@@ -21,6 +21,7 @@ export class AuthService implements CanActivate {
 
     this.auth = afAuth.authState.subscribe(authUser => {
       if (authUser) {
+        localStorage.setItem('user', JSON.stringify(authUser));
         this.userDoc = this.afs.doc<UserProfile>('users/' + authUser.uid);
         this.userDoc.set({
           displayName: authUser.displayName,
@@ -28,6 +29,7 @@ export class AuthService implements CanActivate {
           photoURL: authUser.photoURL
         }, { merge: true });
       } else {
+        localStorage.setItem('user', null);
         this.router.navigate(['login']);
       }
     });
@@ -80,8 +82,8 @@ export class AuthService implements CanActivate {
   }
 
   logout() {
+    localStorage.removeItem('user');
     this.afAuth.auth.signOut();
     this.router.navigate(['/']);
   }
-
 }

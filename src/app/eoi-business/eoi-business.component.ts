@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { EoiBusiness } from '../model/eoi-business';
 import { EoiBusinessService } from '../services/eoi-business.service';
+import { UserProfile } from '../model/user-profile';
 
 export interface Semester {
   number: number;
@@ -23,7 +24,10 @@ export class EoiBusinessComponent implements OnInit {
   datesFormGroup: FormGroup;
   supervisorFormGroup: FormGroup;
 
+  user: UserProfile;
+  eoiBusinessUrl: string;
   projectId: string;
+  eoiId: string;
   isNewProject: boolean;
   eoiDoc: AngularFirestoreDocument<EoiBusiness>;
   eoi: Observable<EoiBusiness>;
@@ -39,8 +43,13 @@ export class EoiBusinessComponent implements OnInit {
 
   ngOnInit() {
     this.isLoading = true;
+    this.user = JSON.parse(localStorage.getItem('user'));
+    this.eoiBusinessUrl = '/users/' + this.user.uid + '/eoiBusiness';
+
     this.projectId = this.route.snapshot.paramMap.get('id');
+    this.eoiId = this.route.snapshot.paramMap.get('eoiId');
     this.isNewProject = (this.route.snapshot.paramMap.get('isNewProject') === 'true');
+
     this.semesters = [
       { number: 1, dates: 'Semester 1. 25 February - 	24 May' },
       { number: 2, dates: 'Semester 2. 29 July - 25 October' },
@@ -48,11 +57,11 @@ export class EoiBusinessComponent implements OnInit {
       { number: 4, dates: 'Semester 4. ' }
     ];
 
-    this.eoiBusinessService.setCollection('/users/GOXQ9lHQgCWKtSPJJIzWVavzLmO2/eoiBusiness');
+    this.eoiBusinessService.setCollection(this.eoiBusinessUrl);
     this.previouslySubmittedEois = this.eoiBusinessService.list();
 
     if (this.isNewProject) {
-      this.afs.collection<EoiBusiness>('/users/GOXQ9lHQgCWKtSPJJIzWVavzLmO2/eoiBusiness')
+      this.afs.collection<EoiBusiness>(this.eoiBusinessUrl)
         .add({
           projectGroupId: this.projectId,
           isNew: false,
@@ -73,11 +82,11 @@ export class EoiBusinessComponent implements OnInit {
           supervisorEmail: '',
         })
         .then(r => {
-          this.eoiDoc = this.afs.doc<EoiBusiness>('/users/GOXQ9lHQgCWKtSPJJIzWVavzLmO2/eoiBusiness/' + r.id);
+          this.eoiDoc = this.afs.doc<EoiBusiness>(this.eoiBusinessUrl + r.id);
           this.bindFormControls();
         });
     } else {
-      this.eoiDoc = this.afs.doc<EoiBusiness>('/users/GOXQ9lHQgCWKtSPJJIzWVavzLmO2/eoiBusiness/UftNbaUVO8okK26VZOhi/');
+      this.eoiDoc = this.afs.doc<EoiBusiness>(this.eoiBusinessUrl + '/' + this.eoiId);
       this.bindFormControls();
     }
   }
