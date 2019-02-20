@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
@@ -18,6 +19,7 @@ export interface Semester {
   styleUrls: ['./eoi-business.component.scss']
 })
 export class EoiBusinessComponent implements OnInit {
+  smallScreen: boolean;
   semesters: Semester[];
   jobFormGroup: FormGroup;
   employerFormGroup: FormGroup;
@@ -36,6 +38,7 @@ export class EoiBusinessComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private breakpointObserver: BreakpointObserver,
     private formBuilder: FormBuilder,
     private afs: AngularFirestore,
     private eoiBusinessService: EoiBusinessService
@@ -43,6 +46,13 @@ export class EoiBusinessComponent implements OnInit {
 
   ngOnInit() {
     this.isLoading = true;
+    this.breakpointObserver.observe([
+      Breakpoints.XSmall,
+      Breakpoints.Small
+    ]).subscribe(result => {
+      this.smallScreen = result.matches;
+    });
+
     this.user = JSON.parse(localStorage.getItem('user'));
     this.eoiBusinessUrl = '/users/' + this.user.uid + '/eoiBusiness';
 
