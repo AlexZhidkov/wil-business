@@ -16,6 +16,7 @@ const routes: Routes = [
   { path: 'project/:id', component: ProjectComponent },
   { path: 'projectEdit/:id', component: ProjectEditComponent },
   { path: 'EOI-student/:id/:isNewProject', component: EoiStudentComponent, canActivate: [AuthService] },
+  { path: 'EOI-student/:eoiId', component: EoiStudentComponent, canActivate: [AuthService] },
   { path: 'projectGroups', component: ProjectGroupsComponent },
   { path: 'projectGroup/:id', component: ProjectGroupComponent },
   { path: 'projectGroupEdit/:id', component: ProjectGroupEditComponent },

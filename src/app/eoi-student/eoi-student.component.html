@@ -1,3 +1,142 @@
-<p>
-  student EOI form
-</p>
+<mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
+
+<ng-template [ngIf]="smallScreen" [ngIfElse]="bigScreen">
+  <mat-vertical-stepper linear #stepper *ngIf="!isLoading">
+    <mat-step [stepControl]="studyAreaFormGroup">
+      <form [formGroup]="studyAreaFormGroup">
+        <div class="form-container">
+          <mat-form-field>
+            <p>What is your area of study/course?</p>
+            <textarea matInput rows="10" formControlName="studyAreaCtrl" required
+              (ngModelChange)="eoiDoc.update({studyArea: $event})">
+            </textarea>
+          </mat-form-field>
+        </div>
+        <div>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="whyFormGroup">
+      <form [formGroup]="whyFormGroup">
+        <div class="form-container">
+          <p>In 50 words or less, why do you want to take part in work a project?</p>
+          <mat-form-field>
+            <textarea matInput rows="10" formControlName="whyCtrl" required
+              (ngModelChange)="eoiDoc.update({why: $event})">
+              </textarea>
+          </mat-form-field>
+        </div>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+
+    <mat-step [stepControl]="commitmentFormGroup">
+      <form [formGroup]="commitmentFormGroup">
+        <div class="form-container">
+          <p>When is a time when you have demonstrated commitment and dependability?</p>
+          <mat-form-field>
+            <textarea matInput rows="10" formControlName="commitmentCtrl" required
+              (ngModelChange)="eoiDoc.update({commitment: $event})">
+            </textarea>
+          </mat-form-field>
+        </div>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="attachmentsFormGroup">
+      <form [formGroup]="attachmentsFormGroup">
+        <div class="form-container">
+          <mat-form-field>
+            <input matInput placeholder="Link to Resume" formControlName="resumeUrlCtrl" required
+              (ngModelChange)="eoiDoc.update({resumeUrl: $event})">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Link to Academic Transcript" formControlName="transcriptUrlCtrl" required
+              (ngModelChange)="eoiDoc.update({transcriptUrl: $event})">
+          </mat-form-field>
+        </div>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button (click)="eoiDoc.update({isNew: true})">Submit</button>
+        </div>
+      </form>
+    </mat-step>
+  </mat-vertical-stepper>
+</ng-template>
+
+<ng-template #bigScreen>
+  <mat-horizontal-stepper #stepper *ngIf="!isLoading">
+    <mat-step [stepControl]="studyAreaFormGroup">
+      <form [formGroup]="studyAreaFormGroup">
+        <div class="form-container">
+          <mat-form-field>
+            <textarea matInput rows="10" placeholder="What is your area of study/course?"
+              formControlName="studyAreaCtrl" required (ngModelChange)="eoiDoc.update({studyArea: $event})">
+            </textarea>
+          </mat-form-field>
+        </div>
+        <div>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="whyFormGroup">
+      <form [formGroup]="whyFormGroup">
+        <div class="form-container">
+          <mat-form-field>
+            <textarea matInput rows="10" formControlName="whyCtrl"
+              placeholder="In 50 words or less, why do you want to take part in work a project?" required
+              (ngModelChange)="eoiDoc.update({why: $event})">
+            </textarea>
+          </mat-form-field>
+        </div>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+
+    <mat-step [stepControl]="commitmentFormGroup">
+      <form [formGroup]="commitmentFormGroup">
+        <div class="form-container">
+          <mat-form-field>
+            <textarea matInput rows="10" formControlName="commitmentCtrl"
+              placeholder="When is a time when you have demonstrated commitment and dependability?" required
+              (ngModelChange)="eoiDoc.update({commitment: $event})">
+            </textarea>
+          </mat-form-field>
+        </div>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="attachmentsFormGroup">
+      <form [formGroup]="attachmentsFormGroup">
+        <div class="form-container">
+          <mat-form-field>
+            <input matInput placeholder="Link to Resume" formControlName="resumeUrlCtrl" required
+              (ngModelChange)="eoiDoc.update({resumeUrl: $event})">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Link to Academic Transcript" formControlName="transcriptUrlCtrl" required
+              (ngModelChange)="eoiDoc.update({transcriptUrl: $event})">
+          </mat-form-field>
+        </div>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button (click)="eoiDoc.update({isNew: true})">Submit</button>
+        </div>
+      </form>
+    </mat-step>
+  </mat-horizontal-stepper>
+</ng-template>
