@@ -38,6 +38,7 @@ import { ProjectGroupEditComponent } from './project-group-edit/project-group-ed
 import { EoiBusinessService } from './services/eoi-business.service';
 import { ProfileBusinessComponent } from './profile-business/profile-business.component';
 import { EoiStudentComponent } from './eoi-student/eoi-student.component';
+import { ProfileStudentComponent } from './profile-student/profile-student.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { EoiStudentComponent } from './eoi-student/eoi-student.component';
     ProjectEditComponent,
     ProjectGroupEditComponent,
     ProfileBusinessComponent,
-    EoiStudentComponent
+    EoiStudentComponent,
+    ProfileStudentComponent
   ],
   entryComponents: [
     ProjectEditDialogComponent
