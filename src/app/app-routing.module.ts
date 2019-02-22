@@ -12,17 +12,17 @@ import { ProfileBusinessComponent } from './profile-business/profile-business.co
 import { EoiStudentComponent } from './eoi-student/eoi-student.component';
 
 const routes: Routes = [
-  { path: 'projects', component: ProjectsComponent },
-  { path: 'project/:id', component: ProjectComponent },
+  { path: 'student', component: ProjectsComponent },
+  { path: 'student/:id', component: ProjectComponent },
   { path: 'projectEdit/:id', component: ProjectEditComponent },
   { path: 'EOI-student/:id/:isNewProject', component: EoiStudentComponent, canActivate: [AuthService] },
   { path: 'EOI-student/:eoiId', component: EoiStudentComponent, canActivate: [AuthService] },
-  { path: 'projectGroups', component: ProjectGroupsComponent },
-  { path: 'projectGroup/:id', component: ProjectGroupComponent },
+  { path: 'business', component: ProjectGroupsComponent },
+  { path: 'business/:id', component: ProjectGroupComponent },
+  { path: 'business/profile', component: ProfileBusinessComponent, canActivate: [AuthService] },
   { path: 'projectGroupEdit/:id', component: ProjectGroupEditComponent },
   { path: 'EOI-business/:id/:isNewProject', component: EoiBusinessComponent, canActivate: [AuthService] },
   { path: 'EOI-business/:eoiId', component: EoiBusinessComponent, canActivate: [AuthService] },
-  { path: 'business/profile', component: ProfileBusinessComponent, canActivate: [AuthService] },
   { path: '**', component: ProjectsComponent }
 ];
 
