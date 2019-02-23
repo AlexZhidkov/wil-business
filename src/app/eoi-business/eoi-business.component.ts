@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -7,6 +8,7 @@ import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firest
 import { EoiBusiness } from '../model/eoi-business';
 import { EoiBusinessService } from '../services/eoi-business.service';
 import { UserProfile } from '../model/user-profile';
+import { environment } from 'src/environments/environment';
 
 export interface Semester {
   number: number;
@@ -37,6 +39,7 @@ export class EoiBusinessComponent implements OnInit {
   previouslySubmittedEois: Observable<EoiBusiness[]>;
 
   constructor(
+    private http: HttpClient,
     private route: ActivatedRoute,
     private breakpointObserver: BreakpointObserver,
     private formBuilder: FormBuilder,
@@ -133,5 +136,45 @@ export class EoiBusinessComponent implements OnInit {
 
   CloneFromEoi(id: any) {
     this.eoiDoc.update(id);
+  }
+
+  submitEoi() {
+    this.eoiDoc.get()
+      .subscribe(eoiBusinessSnapshot => {
+        const eoiBusiness = eoiBusinessSnapshot.data() as EoiBusiness;
+        const formSubmission = {
+          fields: [
+            {
+              name: 'title',
+              value: eoiBusiness.title
+            },
+            {
+              name: 'project',
+              value: eoiBusiness.description
+            },
+            {
+              name: 'skills',
+              value: eoiBusiness.skills
+            },
+            {
+              name: 'clearance',
+              value: eoiBusiness.clearance
+            },
+            {
+              name: 'email',
+              value: 'example@example.com'
+            }
+          ]
+        };
+
+        this.http.post(
+          environment.hubspot.formSubmissionsUrl +
+          environment.hubspot.portalId + '/' +
+          environment.hubspot.eoiBusinessFormFormGuid,
+          formSubmission)
+          .subscribe(response => {
+            console.log(response);
+          });
+      });
   }
 }

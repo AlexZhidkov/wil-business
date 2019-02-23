@@ -11,6 +11,11 @@ export const environment = {
     projectId: 'wil-business',
     storageBucket: 'wil-business.appspot.com',
     messagingSenderId: '219284721685'
+  },
+  hubspot: {
+    formSubmissionsUrl: 'https://api.hsforms.com/submissions/v3/integration/submit/',
+    portalId: '',
+    eoiBusinessFormFormGuid: '',
   }
 };
 
