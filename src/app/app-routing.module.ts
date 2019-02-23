@@ -15,16 +15,16 @@ import { ProfileStudentComponent } from './profile-student/profile-student.compo
 const routes: Routes = [
   { path: 'student', component: ProjectsComponent },
   { path: 'student/profile', component: ProfileStudentComponent, canActivate: [AuthService] },
+  { path: 'student/eoi/:id/:isNewProject', component: EoiStudentComponent, canActivate: [AuthService] },
+  { path: 'student/eoi/:eoiId', component: EoiStudentComponent, canActivate: [AuthService] },
   { path: 'student/:id', component: ProjectComponent },
   { path: 'projectEdit/:id', component: ProjectEditComponent },
-  { path: 'EOI-student/:id/:isNewProject', component: EoiStudentComponent, canActivate: [AuthService] },
-  { path: 'EOI-student/:eoiId', component: EoiStudentComponent, canActivate: [AuthService] },
   { path: 'business', component: ProjectGroupsComponent },
   { path: 'business/profile', component: ProfileBusinessComponent, canActivate: [AuthService] },
+  { path: 'business/eoi/:id/:isNewProject', component: EoiBusinessComponent, canActivate: [AuthService] },
+  { path: 'business/eoi/:eoiId', component: EoiBusinessComponent, canActivate: [AuthService] },
   { path: 'business/:id', component: ProjectGroupComponent },
   { path: 'projectGroupEdit/:id', component: ProjectGroupEditComponent },
-  { path: 'EOI-business/:id/:isNewProject', component: EoiBusinessComponent, canActivate: [AuthService] },
-  { path: 'EOI-business/:eoiId', component: EoiBusinessComponent, canActivate: [AuthService] },
   { path: '**', component: ProjectsComponent }
 ];
 
