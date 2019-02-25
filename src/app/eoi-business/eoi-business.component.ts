@@ -166,7 +166,7 @@ export class EoiBusinessComponent implements OnInit {
         this.http.post(
           environment.hubspot.formSubmissionsUrl +
           environment.hubspot.portalId + '/' +
-          environment.hubspot.eoiBusinessFormFormGuid,
+          environment.hubspot.eoiBusinessFormGuid,
           formSubmission)
           .subscribe(response => {
             console.log(response);

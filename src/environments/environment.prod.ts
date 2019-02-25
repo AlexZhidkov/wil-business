@@ -11,6 +11,7 @@ export const environment = {
   hubspot: {
     formSubmissionsUrl: 'https://api.hsforms.com/submissions/v3/integration/submit/',
     portalId: '',
-    eoiBusinessFormFormGuid: '',
+    eoiBusinessFormGuid: '',
+    eoiStudentFormGuid: ''
   }
 };
