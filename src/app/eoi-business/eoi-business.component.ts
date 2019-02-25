@@ -144,26 +144,22 @@ export class EoiBusinessComponent implements OnInit {
         const eoiBusiness = eoiBusinessSnapshot.data() as EoiBusiness;
         const formSubmission = {
           fields: [
-            {
-              name: 'title',
-              value: eoiBusiness.title
-            },
-            {
-              name: 'project',
-              value: eoiBusiness.description
-            },
-            {
-              name: 'skills',
-              value: eoiBusiness.skills
-            },
-            {
-              name: 'clearance',
-              value: eoiBusiness.clearance
-            },
-            {
-              name: 'email',
-              value: 'example@example.com'
-            }
+            { name: 'email', value: this.user.email },
+            { name: 'title', value: eoiBusiness.title },
+            { name: 'project', value: eoiBusiness.description },
+            { name: 'skills', value: eoiBusiness.skills },
+            { name: 'clearance', value: eoiBusiness.clearance },
+            { name: 'company', value: eoiBusiness.name },
+            { name: 'website', value: eoiBusiness.website },
+            { name: 'primary_contact', value: eoiBusiness.primaryContact },
+            { name: 'address', value: eoiBusiness.address },
+            { name: 'about', value: eoiBusiness.about },
+            { name: 'semester', value: eoiBusiness.dates },
+            { name: 'supervisor_name', value: eoiBusiness.supervisor },
+            { name: 'supervisor_title_role', value: eoiBusiness.supervisorRole },
+            { name: 'supervisor_expirience', value: eoiBusiness.supervisorExperience },
+            { name: 'supervisor_phone', value: eoiBusiness.supervisorPhone },
+            { name: 'supervisor_email', value: eoiBusiness.supervisorEmail },
           ]
         };
 
