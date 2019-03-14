@@ -28,7 +28,6 @@ import { AppComponent } from './app.component';
 import { ProjectsComponent } from './projects/projects.component';
 import { ProjectEditDialogComponent } from './project-edit-dialog/project-edit-dialog.component';
 import { ProjectService } from './services/project.service';
-import { SidenavProfileComponent } from './sidenav-profile/sidenav-profile.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { ProjectComponent } from './project/project.component';
 import { EoiBusinessComponent } from './eoi-business/eoi-business.component';
@@ -46,7 +45,6 @@ import { ProfileStudentComponent } from './profile-student/profile-student.compo
     AppComponent,
     ProjectsComponent,
     ProjectEditDialogComponent,
-    SidenavProfileComponent,
     ProjectComponent,
     EoiBusinessComponent,
     ProjectGroupsComponent,
