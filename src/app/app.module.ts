@@ -40,6 +40,7 @@ import { ProfileBusinessComponent } from './profile-business/profile-business.co
 import { EoiStudentComponent } from './eoi-student/eoi-student.component';
 import { ProfileStudentComponent } from './profile-student/profile-student.component';
 import { LoginComponent } from './login/login.component';
+import { EoiStudentService } from './services/eoi-student.service';
 
 @NgModule({
   declarations: [
@@ -88,7 +89,8 @@ import { LoginComponent } from './login/login.component';
   ],
   providers: [
     ProjectService,
-    EoiBusinessService
+    EoiBusinessService,
+    EoiStudentService
   ],
   bootstrap: [AppComponent]
 })

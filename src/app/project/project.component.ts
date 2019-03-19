@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Project } from '../model/project';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
+import { EoiStudentService } from '../services/eoi-student.service';
 
 @Component({
   selector: 'app-project',
@@ -18,7 +19,8 @@ export class ProjectComponent implements OnInit {
 
   constructor(public dialog: MatDialog,
               private route: ActivatedRoute,
-              public afs: AngularFirestore) { }
+              public afs: AngularFirestore,
+              public eoiStudentService: EoiStudentService) { }
 
   ngOnInit() {
     this.isLoading = true;
@@ -26,5 +28,9 @@ export class ProjectComponent implements OnInit {
     this.projectDoc = this.afs.doc<Project>('projects/' + this.projectId);
     this.project = this.projectDoc.valueChanges();
     this.project.subscribe(() => this.isLoading = false);
+  }
+
+  storeProjectUrl(projectId: string) {
+    this.eoiStudentService.setEoiStudentPath('/student/eoi/' + projectId + '/true');
   }
 }

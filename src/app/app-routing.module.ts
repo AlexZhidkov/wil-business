@@ -11,6 +11,7 @@ import { ProjectGroupEditComponent } from './project-group-edit/project-group-ed
 import { ProfileBusinessComponent } from './profile-business/profile-business.component';
 import { EoiStudentComponent } from './eoi-student/eoi-student.component';
 import { ProfileStudentComponent } from './profile-student/profile-student.component';
+import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
   { path: 'student', component: ProjectsComponent },
@@ -25,6 +26,7 @@ const routes: Routes = [
   { path: 'business/eoi/:eoiId', component: EoiBusinessComponent, canActivate: [AuthService] },
   { path: 'business/:id', component: ProjectGroupComponent },
   { path: 'projectGroupEdit/:id', component: ProjectGroupEditComponent },
+  { path: 'login', component: LoginComponent },
   { path: '**', component: ProjectsComponent }
 ];
 

@@ -30,13 +30,12 @@ export class AuthService implements CanActivate {
         }, { merge: true });
       } else {
         localStorage.setItem('user', null);
-        this.router.navigate(['login']);
       }
     });
   }
 
   canActivate(): boolean {
-    if (!this.isAuthenticated) {
+    if (localStorage.getItem('user') === 'null' || !this.isAuthenticated) {
       this.router.navigate(['login']);
       return false;
     }
