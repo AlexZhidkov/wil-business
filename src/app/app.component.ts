@@ -11,12 +11,4 @@ import { AuthService } from './services/auth.service';
 export class AppComponent {
 
   constructor(public authService: AuthService) { }
-
-  login() {
-    this.authService.loginWithGoogle();
-  }
-
-  logout() {
-    this.authService.logout();
-  }
 }
