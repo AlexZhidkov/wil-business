@@ -5,6 +5,8 @@ import { auth } from 'firebase/app';
 import { Observable, Subscription } from 'rxjs';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { UserProfile } from '../model/user-profile';
+import { EoiStudentService } from './eoi-student.service';
+import { EoiBusinessService } from './eoi-business.service';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +19,9 @@ export class AuthService implements CanActivate {
   constructor(
     private afAuth: AngularFireAuth,
     private router: Router,
-    private afs: AngularFirestore) {
+    private afs: AngularFirestore,
+    public eoiStudentService: EoiStudentService,
+    public eoiBusinessService: EoiBusinessService) {
 
     this.auth = afAuth.authState.subscribe(authUser => {
       if (authUser) {
@@ -82,6 +86,8 @@ export class AuthService implements CanActivate {
 
   logout() {
     localStorage.removeItem('user');
+    this.eoiStudentService.setEoiStudentPath(null);
+    this.eoiBusinessService.setEoiBusinessPath(null);
     this.afAuth.auth.signOut();
     this.router.navigate(['/']);
   }
