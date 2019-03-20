@@ -4,4 +4,5 @@ export interface UserProfile {
     fcmToken?: string;
     email: string;
     photoURL: string;
+    role?: string;
 }
