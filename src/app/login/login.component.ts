@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 import { EoiStudentService } from '../services/eoi-student.service';
+import { EoiBusinessService } from '../services/eoi-business.service';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,8 @@ export class LoginComponent implements OnInit {
 
   constructor(public authService: AuthService,
               private router: Router,
-              public eoiStudentService: EoiStudentService) { }
+              public eoiStudentService: EoiStudentService,
+              public eoiBusinessService: EoiBusinessService) { }
 
   ngOnInit() {
   }
@@ -21,8 +23,9 @@ export class LoginComponent implements OnInit {
     if (this.eoiStudentService.getEoiStudentPath() != null) {
       this.authService.loginWithFacebook().then(() => this.router.navigate(
         [this.eoiStudentService.getEoiStudentPath()]));
-    } else {
-      this.authService.loginWithFacebook().then(() => this.router.navigate(['home']));
+    } else if (this.eoiBusinessService.getEoiBusinessPath() != null) {
+      this.authService.loginWithFacebook().then(() => this.router.navigate(
+        [this.eoiBusinessService.getEoiBusinessPath()]));
     }
   }
 
@@ -30,8 +33,9 @@ export class LoginComponent implements OnInit {
     if (this.eoiStudentService.getEoiStudentPath() != null) {
       this.authService.loginWithGoogle().then(() => this.router.navigate(
         [this.eoiStudentService.getEoiStudentPath()]));
-    } else {
-      this.authService.loginWithGoogle().then(() => this.router.navigate(['home']));
+    }  else if (this.eoiBusinessService.getEoiBusinessPath() != null) {
+      this.authService.loginWithGoogle().then(() => this.router.navigate(
+        [this.eoiBusinessService.getEoiBusinessPath()]));
     }
   }
 }

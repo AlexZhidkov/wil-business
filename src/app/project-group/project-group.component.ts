@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { ProjectGroup } from '../model/project-group';
+import { EoiBusinessService } from '../services/eoi-business.service';
 
 @Component({
   selector: 'app-project-group',
@@ -19,7 +20,8 @@ export class ProjectGroupComponent implements OnInit {
 
   constructor(public dialog: MatDialog,
               private route: ActivatedRoute,
-              public afs: AngularFirestore) { }
+              public afs: AngularFirestore,
+              public eoiBusinessService: EoiBusinessService) { }
 
   ngOnInit() {
     this.isLoading = true;
@@ -27,5 +29,9 @@ export class ProjectGroupComponent implements OnInit {
     this.projectGroupDoc = this.afs.doc<ProjectGroup>('projectGroups/' + this.projectGroupId);
     this.projectGroup = this.projectGroupDoc.valueChanges();
     this.projectGroup.subscribe(() => this.isLoading = false);
+  }
+
+  storeProjectGroupId(projectGroupId: string) {
+    this.eoiBusinessService.setEoiBusinessPath('/business/eoi/' + projectGroupId + '/true');
   }
 }
