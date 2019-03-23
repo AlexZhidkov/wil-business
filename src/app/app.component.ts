@@ -9,7 +9,15 @@ import { AuthService } from './services/auth.service';
 })
 
 export class AppComponent {
-  constructor(public authService: AuthService) { }
+  login: boolean;
+  photoURL: string;
+
+  constructor(public authService: AuthService) {
+    this.authService.initialDetails.subscribe(obj => {
+      this.login = obj.isLogin;
+      this.photoURL = obj.photoURL;
+    });
+  }
 
   isLoggedIn(): boolean {
     return this.authService.isAuthenticated;

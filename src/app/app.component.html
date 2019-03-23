@@ -1,7 +1,10 @@
 <mat-toolbar color="primary">
     <span>Experlio</span>
     <span class="fill-space"></span>
-    <a *ngIf="!(this.authService.isAuthenticated)" style="float: left;" mat-button routerLink="/login">Sign In</a>
-    <button *ngIf="(this.authService.isAuthenticated)" style="float: left;" (click)='logout()' mat-button>Sign Out</button>
+    <a *ngIf="!login" style="float: left;" mat-button routerLink="/login">Sign In</a>
+    <button *ngIf="login" style="float: left;" (click)='logout()' mat-button>Sign Out</button>
+    <button mat-icon-button routerLink="/profile" *ngIf="login">
+        <img class="toolbar-photo" src={{photoURL}}>
+    </button>
 </mat-toolbar>
 <router-outlet></router-outlet>

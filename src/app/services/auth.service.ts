@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router, CanActivate } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { auth } from 'firebase/app';
-import { Observable, Subscription } from 'rxjs';
+import { Observable, Subscription, Subject } from 'rxjs';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { UserProfile } from '../model/user-profile';
 import { EoiStudentService } from './eoi-student.service';
@@ -17,6 +17,7 @@ export class AuthService implements CanActivate {
   user: Observable<UserProfile>;
   userRole: string;
   isLoggedIn: boolean;
+  initialDetails = new Subject<{isLogin: boolean, photoURL: string}>();
 
   constructor(
     private afAuth: AngularFireAuth,
@@ -45,9 +46,11 @@ export class AuthService implements CanActivate {
           }, { merge: true });
         }
         this.isLoggedIn = true;
+        this.emitInitialDetails(this.isLoggedIn, authUser.photoURL);
       } else {
         localStorage.setItem('user', null);
         this.isLoggedIn = false;
+        this.emitInitialDetails(this.isLoggedIn, null);
       }
     });
   }
@@ -113,5 +116,9 @@ export class AuthService implements CanActivate {
 
   get role(): string {
     return this.userRole;
+  }
+
+  emitInitialDetails(isLogin: boolean, photoURL: string) {
+    this.initialDetails.next({isLogin, photoURL});
   }
 }
