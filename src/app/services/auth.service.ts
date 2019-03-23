@@ -16,6 +16,7 @@ export class AuthService implements CanActivate {
   private userDoc: AngularFirestoreDocument<UserProfile>;
   user: Observable<UserProfile>;
   userRole: string;
+  isLoggedIn: boolean;
 
   constructor(
     private afAuth: AngularFireAuth,
@@ -43,8 +44,10 @@ export class AuthService implements CanActivate {
             role: 'isBusiness'
           }, { merge: true });
         }
+        this.isLoggedIn = true;
       } else {
         localStorage.setItem('user', null);
+        this.isLoggedIn = false;
       }
     });
   }
@@ -58,7 +61,7 @@ export class AuthService implements CanActivate {
   }
 
   get isAuthenticated(): boolean {
-    return localStorage.getItem('user') !== null;
+    return this.isLoggedIn;
   }
 
   get currentUser(): any {
