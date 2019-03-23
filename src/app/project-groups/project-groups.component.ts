@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { ProjectService } from '../services/project.service';
 import { ProjectGroup } from '../model/project-group';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-project-groups',
@@ -13,7 +14,11 @@ export class ProjectGroupsComponent implements OnInit {
   projectGroups: Observable<ProjectGroup[]>;
   isLoading: boolean;
 
-  constructor(private router: Router, private projectService: ProjectService) { }
+  constructor(private router: Router,
+              private projectService: ProjectService,
+              private auth: AuthService) {
+                this.auth.userRole = 'isBusiness';
+               }
 
   ngOnInit() {
     this.isLoading = true;

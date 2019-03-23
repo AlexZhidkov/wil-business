@@ -15,6 +15,7 @@ export class AuthService implements CanActivate {
   auth: Subscription;
   private userDoc: AngularFirestoreDocument<UserProfile>;
   user: Observable<UserProfile>;
+  userRole: string;
 
   constructor(
     private afAuth: AngularFireAuth,
@@ -57,7 +58,7 @@ export class AuthService implements CanActivate {
   }
 
   get isAuthenticated(): boolean {
-    return this.afAuth.authState !== null;
+    return localStorage.getItem('user') !== null;
   }
 
   get currentUser(): any {
@@ -98,7 +99,16 @@ export class AuthService implements CanActivate {
     localStorage.removeItem('user');
     this.eoiStudentService.setEoiStudentPath(null);
     this.eoiBusinessService.setEoiBusinessPath(null);
+    this.userRole = null;
     this.afAuth.auth.signOut();
     this.router.navigate(['/']);
+  }
+
+  set role(role: string) {
+    this.userRole = role;
+  }
+
+  get role(): string {
+    return this.userRole;
   }
 }

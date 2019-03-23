@@ -26,6 +26,10 @@ export class LoginComponent implements OnInit {
     } else if (this.eoiBusinessService.getEoiBusinessPath() != null) {
       this.authService.loginWithFacebook().then(() => this.router.navigate(
         [this.eoiBusinessService.getEoiBusinessPath()]));
+    } else if (this.authService.userRole === 'isStudent') {
+      this.authService.loginWithFacebook().then(() => this.router.navigate(['student']));
+    } else if (this.authService.userRole === 'isBusiness') {
+      this.authService.loginWithFacebook().then(() => this.router.navigate(['business']));
     }
   }
 
@@ -36,6 +40,10 @@ export class LoginComponent implements OnInit {
     }  else if (this.eoiBusinessService.getEoiBusinessPath() != null) {
       this.authService.loginWithGoogle().then(() => this.router.navigate(
         [this.eoiBusinessService.getEoiBusinessPath()]));
+    } else if (this.authService.userRole === 'isStudent') {
+      this.authService.loginWithGoogle().then(() => this.router.navigate(['student']));
+    } else if (this.authService.userRole === 'isBusiness') {
+      this.authService.loginWithGoogle().then(() => this.router.navigate(['business']));
     }
   }
 }
