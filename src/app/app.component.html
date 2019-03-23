@@ -3,7 +3,7 @@
     <span class="fill-space"></span>
     <a *ngIf="!login" style="float: left;" mat-button routerLink="/login">Sign In</a>
     <button *ngIf="login" style="float: left;" (click)='logout()' mat-button>Sign Out</button>
-    <button mat-icon-button routerLink="/profile" *ngIf="login">
+    <button mat-icon-button (click)="navigateToProfilePage()" *ngIf="login">
         <img class="toolbar-photo" src={{photoURL}}>
     </button>
 </mat-toolbar>

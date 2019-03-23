@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 
 import { AuthService } from './services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +13,8 @@ export class AppComponent {
   login: boolean;
   photoURL: string;
 
-  constructor(public authService: AuthService) {
+  constructor(public authService: AuthService,
+              private router: Router) {
     this.authService.initialDetails.subscribe(obj => {
       this.login = obj.isLogin;
       this.photoURL = obj.photoURL;
@@ -25,5 +27,14 @@ export class AppComponent {
 
   logout() {
     this.authService.logout();
+  }
+
+  navigateToProfilePage() {
+    const role = this.authService.role;
+    if (role === 'isStudent') {
+      this.router.navigateByUrl('/student/profile');
+    } else if (role === 'isBusiness') {
+      this.router.navigateByUrl('/business/profile');
+    }
   }
 }
