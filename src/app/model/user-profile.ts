@@ -4,5 +4,8 @@ export interface UserProfile {
     fcmToken?: string;
     email: string;
     photoURL: string;
-    role?: string;
+    isStudent?: boolean;
+    isBusiness?: boolean;
+    isUniversity?: boolean;
+    isAdmin?: boolean;
 }

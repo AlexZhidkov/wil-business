@@ -15,10 +15,10 @@ export class ProjectGroupsComponent implements OnInit {
   isLoading: boolean;
 
   constructor(private router: Router,
-              private projectService: ProjectService,
-              private auth: AuthService) {
-                this.auth.userRole = 'isBusiness';
-               }
+    private projectService: ProjectService,
+    private auth: AuthService) {
+    this.auth.isBusiness = true;
+  }
 
   ngOnInit() {
     this.isLoading = true;

@@ -30,10 +30,9 @@ export class AppComponent {
   }
 
   navigateToProfilePage() {
-    const role = this.authService.role;
-    if (role === 'isStudent') {
+    if (this.authService.isStudent) {
       this.router.navigateByUrl('/student/profile');
-    } else if (role === 'isBusiness') {
+    } else if (this.authService.isBusiness) {
       this.router.navigateByUrl('/business/profile');
     }
   }

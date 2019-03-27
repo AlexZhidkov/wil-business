@@ -17,7 +17,7 @@ export class ProjectsComponent implements OnInit {
   constructor(private router: Router,
               private projectService: ProjectService,
               private auth: AuthService) {
-                this.auth.userRole = 'isStudent';
+    this.auth.isStudent = true;
   }
 
   ngOnInit() {

@@ -15,9 +15,12 @@ export class AuthService implements CanActivate {
   auth: Subscription;
   private userDoc: AngularFirestoreDocument<UserProfile>;
   user: Observable<UserProfile>;
-  userRole: string;
+  isStudentRole: boolean;
+  isBusinessRole: boolean;
+  isUniversityRole: boolean;
+  isAdminRole: boolean;
   isLoggedIn: boolean;
-  initialDetails = new Subject<{isLogin: boolean, photoURL: string}>();
+  initialDetails = new Subject<{ isLogin: boolean, photoURL: string }>();
 
   constructor(
     private afAuth: AngularFireAuth,
@@ -35,14 +38,14 @@ export class AuthService implements CanActivate {
             displayName: authUser.displayName,
             email: authUser.email,
             photoURL: authUser.photoURL,
-            role: 'isStudent'
+            isStudent: true,
           }, { merge: true });
         } else if (eoiBusinessService.getEoiBusinessPath()) {
           this.userDoc.set({
             displayName: authUser.displayName,
             email: authUser.email,
             photoURL: authUser.photoURL,
-            role: 'isBusiness'
+            isBusiness: true,
           }, { merge: true });
         }
         this.isLoggedIn = true;
@@ -105,20 +108,43 @@ export class AuthService implements CanActivate {
     localStorage.removeItem('user');
     this.eoiStudentService.setEoiStudentPath(null);
     this.eoiBusinessService.setEoiBusinessPath(null);
-    this.userRole = null;
+    this.isStudent = false;
+    this.isBusiness = false;
+    this.isUniversity = false;
+    this.isAdmin = false;
     this.afAuth.auth.signOut();
     this.router.navigate(['/']);
   }
 
-  set role(role: string) {
-    this.userRole = role;
+  set isStudent(value: boolean) {
+    this.isStudentRole = value;
+  }
+  get isStudent(): boolean {
+    return this.isStudentRole;
   }
 
-  get role(): string {
-    return this.userRole;
+  set isBusiness(value: boolean) {
+    this.isBusinessRole = value;
+  }
+  get isBusiness(): boolean {
+    return this.isBusinessRole;
+  }
+
+  set isUniversity(value: boolean) {
+    this.isUniversityRole = value;
+  }
+  get isUniversity(): boolean {
+    return this.isUniversityRole;
+  }
+
+  set isAdmin(value: boolean) {
+    this.isAdminRole = value;
+  }
+  get isAdmin(): boolean {
+    return this.isAdminRole;
   }
 
   emitInitialDetails(isLogin: boolean, photoURL: string) {
-    this.initialDetails.next({isLogin, photoURL});
+    this.initialDetails.next({ isLogin, photoURL });
   }
 }
