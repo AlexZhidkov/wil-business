@@ -13,9 +13,11 @@ import { EoiStudentComponent } from './eoi-student/eoi-student.component';
 import { ProfileStudentComponent } from './profile-student/profile-student.component';
 import { LoginComponent } from './login/login.component';
 import { UniversityComponent } from './university/university.component';
+import { UniversityTodoComponent } from './university-todo/university-todo.component';
 
 const routes: Routes = [
   { path: 'university', component: UniversityComponent },
+  { path: 'university/todo/:id', component: UniversityTodoComponent },
   { path: 'student', component: ProjectsComponent },
   { path: 'student/profile', component: ProfileStudentComponent, canActivate: [AuthService] },
   { path: 'student/eoi/:id/:isNewProject', component: EoiStudentComponent, canActivate: [AuthService] },

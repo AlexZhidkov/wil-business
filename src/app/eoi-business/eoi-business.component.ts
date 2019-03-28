@@ -9,6 +9,7 @@ import { EoiBusiness } from '../model/eoi-business';
 import { EoiBusinessService } from '../services/eoi-business.service';
 import { UserProfile } from '../model/user-profile';
 import { environment } from 'src/environments/environment';
+import { UniversityTodoService } from '../services/university-todo.service';
 
 export interface Semester {
   number: number;
@@ -44,7 +45,8 @@ export class EoiBusinessComponent implements OnInit {
     private breakpointObserver: BreakpointObserver,
     private formBuilder: FormBuilder,
     private afs: AngularFirestore,
-    private eoiBusinessService: EoiBusinessService
+    private eoiBusinessService: EoiBusinessService,
+    private universityTodoService: UniversityTodoService
   ) { }
 
   ngOnInit() {
@@ -142,8 +144,8 @@ export class EoiBusinessComponent implements OnInit {
     this.eoiDoc.get()
       .subscribe(eoiBusinessSnapshot => {
         const eoiBusiness = eoiBusinessSnapshot.data() as EoiBusiness;
-        const todosCollection = this.afs.collection<any>('universities/uwa/todo');
-        todosCollection.add({ title: 'Placement request received', eoiBusines: eoiBusiness });
+        this.universityTodoService.setCollection('universities/uwa/todo');
+        this.universityTodoService.add({ title: 'Placement request received', eoiBusiness });
       });
   }
 

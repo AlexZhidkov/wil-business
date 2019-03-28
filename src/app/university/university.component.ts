@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
+import { UniversityTodoService } from '../services/university-todo.service';
 
 @Component({
   selector: 'app-university',
@@ -11,12 +11,15 @@ export class UniversityComponent implements OnInit {
   todos: Observable<any[]>;
   isLoading: boolean;
 
-  constructor(private afs: AngularFirestore) { }
+  constructor(private universityTodoService: UniversityTodoService) { }
 
   ngOnInit() {
     this.isLoading = true;
-    this.todos = this.afs.collection('universities/uwa/todo').valueChanges();
-    this.todos.subscribe(() => this.isLoading = false);
+    this.universityTodoService.setCollection('universities/uwa/todo');
+    this.todos = this.universityTodoService.list();
+    this.todos.subscribe(() => {
+      this.isLoading = false;
+    });
   }
 
 }

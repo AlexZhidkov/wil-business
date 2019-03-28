@@ -42,6 +42,8 @@ import { ProfileStudentComponent } from './profile-student/profile-student.compo
 import { LoginComponent } from './login/login.component';
 import { EoiStudentService } from './services/eoi-student.service';
 import { UniversityComponent } from './university/university.component';
+import { UniversityTodoComponent } from './university-todo/university-todo.component';
+import { UniversityTodoService } from './services/university-todo.service';
 
 @NgModule({
   declarations: [
@@ -58,7 +60,8 @@ import { UniversityComponent } from './university/university.component';
     EoiStudentComponent,
     ProfileStudentComponent,
     LoginComponent,
-    UniversityComponent
+    UniversityComponent,
+    UniversityTodoComponent
   ],
   entryComponents: [
     ProjectEditDialogComponent
@@ -92,7 +95,8 @@ import { UniversityComponent } from './university/university.component';
   providers: [
     ProjectService,
     EoiBusinessService,
-    EoiStudentService
+    EoiStudentService,
+    UniversityTodoService
   ],
   bootstrap: [AppComponent]
 })
