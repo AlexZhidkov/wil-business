@@ -142,6 +142,15 @@ export class EoiBusinessComponent implements OnInit {
     this.eoiDoc.get()
       .subscribe(eoiBusinessSnapshot => {
         const eoiBusiness = eoiBusinessSnapshot.data() as EoiBusiness;
+        const todosCollection = this.afs.collection<any>('universities/uwa/todo');
+        todosCollection.add({ title: 'Placement request received', eoiBusines: eoiBusiness });
+      });
+  }
+
+  submitEoiToExperlio() {
+    this.eoiDoc.get()
+      .subscribe(eoiBusinessSnapshot => {
+        const eoiBusiness = eoiBusinessSnapshot.data() as EoiBusiness;
         const formSubmission = {
           fields: [
             { name: 'email', value: this.user.email },
