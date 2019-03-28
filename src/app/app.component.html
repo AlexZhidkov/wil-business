@@ -1,4 +1,7 @@
 <mat-toolbar color="primary">
+    <button mat-icon-button (click)="sidenav.toggle()">
+        <mat-icon aria-label="Menu">menu</mat-icon>
+    </button>
     <span>Experlio</span>
     <span class="fill-space"></span>
     <a *ngIf="!login" style="float: left;" mat-button routerLink="/login">Sign In</a>
@@ -7,4 +10,47 @@
         <img class="toolbar-photo" src={{photoURL}}>
     </button>
 </mat-toolbar>
-<router-outlet></router-outlet>
+
+<mat-sidenav-container>
+    <mat-sidenav #sidenav fixedInViewport=true mode="over" (click)="sidenav.toggle()">
+        <mat-nav-list>
+            <mat-list-item>
+                <a matLine href="https://experlio.com/">Home</a>
+            </mat-list-item>
+        </mat-nav-list>
+        <mat-nav-list>
+            <mat-list-item>
+                <a matLine routerLink="/university" routerLinkActive="active">University</a>
+            </mat-list-item>
+        </mat-nav-list>
+        <mat-divider></mat-divider>
+        <mat-nav-list>
+            <mat-list-item>
+                <a matLine routerLink="/business/profile" routerLinkActive="active">Business profile</a>
+            </mat-list-item>
+        </mat-nav-list>
+        <mat-nav-list>
+            <mat-list-item>
+                <a matLine routerLink="/business" routerLinkActive="active">Business</a>
+            </mat-list-item>
+        </mat-nav-list>
+        <mat-nav-list>
+            <mat-list-item>
+                <a matLine routerLink="/student/profile" routerLinkActive="active">Student profile</a>
+            </mat-list-item>
+        </mat-nav-list>
+        <mat-nav-list>
+            <mat-list-item>
+                <a matLine routerLink="/student" routerLinkActive="active">Student</a>
+            </mat-list-item>
+        </mat-nav-list>
+        <mat-nav-list>
+            <mat-list-item>
+                <a matLine (click)="logout()">Sign Out</a>
+            </mat-list-item>
+        </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+</mat-sidenav-container>
