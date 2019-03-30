@@ -9,7 +9,7 @@
   <mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
   <pre>{{todo | json}}</pre>
   <mat-card-actions>
-    <button mat-button>Approve</button>
+    <button mat-button (click)="approveEoiBusiness()">Approve</button>
     <button mat-button (click)="rejectEoiBusiness()">Reject</button>
   </mat-card-actions>
 </mat-card>

@@ -28,6 +28,13 @@ export class UniversityTodoComponent implements OnInit {
     });
   }
 
+  approveEoiBusiness() {
+    this.todo.eoiBusiness.approvedByUniOn = new Date();
+    this.afs.collection<any>('projects')
+      .add(this.todo.eoiBusiness);
+    this.router.navigateByUrl('/university');
+  }
+
   rejectEoiBusiness() {
     this.todo.rejectedOn = new Date();
     this.afs.collection<any>('universities/uwa/rejectedEoiBusiness')
