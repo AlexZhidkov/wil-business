@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-university-todo',
@@ -12,18 +11,28 @@ export class UniversityTodoComponent implements OnInit {
   todoId: string;
   isLoading: boolean;
   private todoDoc: AngularFirestoreDocument<any>;
-  todo: Observable<any>;
+  todo: any;
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     public afs: AngularFirestore
   ) { }
 
   ngOnInit() {
     this.todoId = this.route.snapshot.paramMap.get('id');
     this.todoDoc = this.afs.doc<any>('universities/uwa/todo/' + this.todoId);
-    this.todo = this.todoDoc.valueChanges();
-    this.todo.subscribe(() => this.isLoading = false);
+    this.todoDoc.valueChanges().subscribe(doc => {
+      this.todo = doc;
+      this.isLoading = false;
+    });
   }
 
+  rejectEoiBusiness() {
+    this.todo.rejectedOn = new Date();
+    this.afs.collection<any>('universities/uwa/rejectedEoiBusiness')
+      .add(this.todo)
+      .then(() => this.todoDoc.delete());
+    this.router.navigateByUrl('/university');
+  }
 }
