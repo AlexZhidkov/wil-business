@@ -44,6 +44,7 @@ import { EoiStudentService } from './services/eoi-student.service';
 import { UniversityComponent } from './university/university.component';
 import { UniversityTodoComponent } from './university-todo/university-todo.component';
 import { UniversityTodoService } from './services/university-todo.service';
+import { MatConfirmDialogComponent } from './mat-confirm-dialog/mat-confirm-dialog.component';
 
 @NgModule({
   declarations: [
@@ -61,10 +62,12 @@ import { UniversityTodoService } from './services/university-todo.service';
     ProfileStudentComponent,
     LoginComponent,
     UniversityComponent,
-    UniversityTodoComponent
+    UniversityTodoComponent,
+    MatConfirmDialogComponent
   ],
   entryComponents: [
-    ProjectEditDialogComponent
+    ProjectEditDialogComponent,
+    MatConfirmDialogComponent
   ],
   imports: [
     BrowserModule,
