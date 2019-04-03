@@ -11,6 +11,8 @@
     <button *ngIf="isAdmin" mat-icon-button>
       <mat-icon aria-label="Edit" routerLink="/projectEdit/{{projectId}}">edit</mat-icon>
     </button>
-    <button *ngIf="isAdmin" mat-raised-button color="accent" (click)="confirmDelete(projectId)">Delete Project</button>
+    <button *ngIf="isAdmin" mat-icon-button (click)="confirmDelete(projectId)">
+        <mat-icon arial-label="Delete">delete</mat-icon>
+      </button>
   </mat-card-actions>
 </mat-card>
