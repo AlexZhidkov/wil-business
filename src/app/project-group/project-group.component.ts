@@ -19,6 +19,7 @@ export class ProjectGroupComponent implements OnInit {
   isLoading: boolean;
   private projectGroupDoc: AngularFirestoreDocument<ProjectGroup>;
   projectGroup: Observable<ProjectGroup>;
+  isAdmin: boolean;
 
   constructor(private route: ActivatedRoute,
               public afs: AngularFirestore,
@@ -28,6 +29,7 @@ export class ProjectGroupComponent implements OnInit {
 
   ngOnInit() {
     this.isLoading = true;
+    this.isAdmin = this.authService.isAdmin;
     this.projectGroupId = this.route.snapshot.paramMap.get('id');
     this.projectGroupDoc = this.afs.doc<ProjectGroup>('projectGroups/' + this.projectGroupId);
     this.projectGroup = this.projectGroupDoc.valueChanges();
