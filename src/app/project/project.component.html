@@ -8,7 +8,7 @@
   <markdown [data]="(project | async)?.description"></markdown>
   <mat-card-actions>
     <button mat-raised-button color="accent" (click)="storeProjectUrl(projectId)" routerLink="/student/eoi/{{projectId}}/true">Interested</button>
-    <button mat-icon-button>
+    <button *ngIf="isAdmin" mat-icon-button>
       <mat-icon aria-label="Edit" routerLink="/projectEdit/{{projectId}}">edit</mat-icon>
     </button>
     <button *ngIf="isAdmin" color="accent" (click)="confirmDelete(projectId)" routerLink="/student">Delete Project</button>
