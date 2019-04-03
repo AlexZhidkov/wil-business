@@ -6,6 +6,8 @@ import { Observable } from 'rxjs';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { ProjectGroup } from '../model/project-group';
 import { EoiBusinessService } from '../services/eoi-business.service';
+import { AuthService } from '../services/auth.service';
+import { DialogService } from '../services/dialog.service';
 
 @Component({
   selector: 'app-project-group',
@@ -18,10 +20,11 @@ export class ProjectGroupComponent implements OnInit {
   private projectGroupDoc: AngularFirestoreDocument<ProjectGroup>;
   projectGroup: Observable<ProjectGroup>;
 
-  constructor(public dialog: MatDialog,
-              private route: ActivatedRoute,
+  constructor(private route: ActivatedRoute,
               public afs: AngularFirestore,
-              public eoiBusinessService: EoiBusinessService) { }
+              public eoiBusinessService: EoiBusinessService,
+              public authService: AuthService,
+              private dialog: DialogService) { }
 
   ngOnInit() {
     this.isLoading = true;
@@ -33,5 +36,20 @@ export class ProjectGroupComponent implements OnInit {
 
   storeProjectGroupId(projectGroupId: string) {
     this.eoiBusinessService.setEoiBusinessPath('/business/eoi/' + projectGroupId + '/true');
+  }
+
+  deleteProject(projectGroupId: string) {
+    const docRef = this.afs.collection('projectGroups').doc(projectGroupId);
+    docRef.delete();
+  }
+
+  confirmDelete(projectGroupId: string) {
+    const message = 'Are you sure to delete this project group?';
+    this.dialog.openConfirmDialog(message)
+    .afterClosed().subscribe( res => {
+      if (res) {
+        this.deleteProject(projectGroupId);
+      }
+    });
   }
 }
