@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material';
-import { ProjectEditDialogComponent } from '../project-edit-dialog/project-edit-dialog.component';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { ProjectGroup } from '../model/project-group';
@@ -25,7 +23,8 @@ export class ProjectGroupComponent implements OnInit {
               public afs: AngularFirestore,
               public eoiBusinessService: EoiBusinessService,
               public authService: AuthService,
-              private dialog: DialogService) { }
+              private dialog: DialogService,
+              private router: Router) { }
 
   ngOnInit() {
     this.isLoading = true;
@@ -51,6 +50,7 @@ export class ProjectGroupComponent implements OnInit {
     .afterClosed().subscribe( res => {
       if (res) {
         this.deleteProject(projectGroupId);
+        this.router.navigate(['/business']);
       }
     });
   }

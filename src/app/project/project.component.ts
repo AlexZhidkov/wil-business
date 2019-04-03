@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Project } from '../model/project';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
@@ -23,7 +23,8 @@ export class ProjectComponent implements OnInit {
               public afs: AngularFirestore,
               public eoiStudentService: EoiStudentService,
               public authService: AuthService,
-              private dialog: DialogService) { }
+              private dialog: DialogService,
+              private router: Router) { }
 
   ngOnInit() {
     this.isLoading = true;
@@ -49,6 +50,7 @@ export class ProjectComponent implements OnInit {
     .afterClosed().subscribe( res => {
       if (res) {
         this.deleteProject(projectId);
+        this.router.navigate(['/student']);
       }
     });
   }
