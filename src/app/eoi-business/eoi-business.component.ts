@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
@@ -42,6 +42,7 @@ export class EoiBusinessComponent implements OnInit {
   constructor(
     private http: HttpClient,
     private route: ActivatedRoute,
+    private router: Router,
     private breakpointObserver: BreakpointObserver,
     private formBuilder: FormBuilder,
     private afs: AngularFirestore,
@@ -147,6 +148,7 @@ export class EoiBusinessComponent implements OnInit {
         this.universityTodoService.setCollection('universities/uwa/todo');
         this.universityTodoService.add({ title: 'Placement request received', eoiBusiness });
       });
+    this.router.navigateByUrl('business');
   }
 
   submitEoiToExperlio() {
