@@ -48,6 +48,7 @@ export class AuthService implements CanActivate {
             isBusiness: true,
           }, { merge: true });
         }
+        this.fetchIsAdminFromDocument(authUser.uid);
         this.isLoggedIn = true;
         this.emitInitialDetails(this.isLoggedIn, authUser.photoURL);
       } else {
@@ -146,5 +147,14 @@ export class AuthService implements CanActivate {
 
   emitInitialDetails(isLogin: boolean, photoURL: string) {
     this.initialDetails.next({ isLogin, photoURL });
+  }
+
+  fetchIsAdminFromDocument(userId: string) {
+    this.afs.collection('users')
+    .doc<UserProfile>(userId).ref.get().then(doc => {
+      if (doc.exists) {
+        this.isAdmin = doc.get('isAdmin');
+      }
+    });
   }
 }
