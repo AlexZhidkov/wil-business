@@ -8,6 +8,7 @@ import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firest
 import { EoiStudent } from '../model/eoi-student';
 import { UserProfile } from '../model/user-profile';
 import { environment } from 'src/environments/environment';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-eoi-student',
@@ -36,6 +37,7 @@ export class EoiStudentComponent implements OnInit {
     private breakpointObserver: BreakpointObserver,
     private formBuilder: FormBuilder,
     private afs: AngularFirestore,
+    private snackBar: MatSnackBar
   ) { }
 
   ngOnInit() {
@@ -95,6 +97,7 @@ export class EoiStudentComponent implements OnInit {
   }
 
   submitEoi() {
+    console.log('submmit');
     this.eoiDoc.get()
       .subscribe(eoiBusinessSnapshot => {
         const eoiStudent = eoiBusinessSnapshot.data() as EoiStudent;
@@ -116,7 +119,15 @@ export class EoiStudentComponent implements OnInit {
           formSubmission)
           .subscribe(response => {
             console.log(response);
+            // this.openSnackBar(response.toLocaleString(), null);
+            // ToDO: Just added snackbar snippet, doesn't show snackbar, Test with actual response
           });
       });
+  }
+
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 2000,
+    });
   }
 }
